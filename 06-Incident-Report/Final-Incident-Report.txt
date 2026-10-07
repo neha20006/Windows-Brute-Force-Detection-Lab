@@ -1,0 +1,366 @@
+============================================================
+SOC INCIDENT REPORT
+WINDOWS BRUTE FORCE DETECTION & INVESTIGATION
+============================================================
+
+CASE ID:
+BRUTE-001
+
+INCIDENT TYPE:
+Brute Force Authentication Attempt
+
+DATE:
+10/07/2026
+
+ENVIRONMENT:
+Controlled VMware Cybersecurity Laboratory
+
+
+============================================================
+1. EXECUTIVE SUMMARY
+============================================================
+
+A series of failed network authentication attempts were
+detected against the Windows Server 2025 virtual machine.
+
+Five failed authentication attempts were generated against
+the "soc-test" account from the Kali Linux virtual machine.
+
+The attempts originated from source IP address
+192.168.87.128 and targeted Windows Server 2025 at
+192.168.87.129.
+
+All five attempts generated Windows Security Event ID 4625
+with Logon Type 3 (Network).
+
+The attempts occurred within an 8-second period.
+
+No corresponding successful Event ID 4624 authentication
+was identified during the investigated timeframe.
+
+The activity is therefore classified as an unsuccessful,
+controlled brute-force authentication simulation.
+
+
+============================================================
+2. LAB ENVIRONMENT
+============================================================
+
+ATTACKER VM:
+Kali Linux
+
+ATTACKER IP:
+192.168.87.128
+
+TARGET VM:
+Windows Server 2025
+
+TARGET IP:
+192.168.87.129
+
+TARGET ACCOUNT:
+soc-test
+
+VIRTUALIZATION PLATFORM:
+VMware
+
+AUTHENTICATION SERVICE:
+SMB / Network Authentication
+
+
+============================================================
+3. DETECTION
+============================================================
+
+The activity was detected through Windows Security Event
+ID 4625.
+
+Event ID 4625 indicates that an account failed to log on.
+
+The observed events showed:
+
+Event ID:
+4625
+
+Logon Type:
+3 - Network
+
+Source Network Address:
+192.168.87.128
+
+Target Account:
+soc-test
+
+Failure Reason:
+Unknown user name or bad password
+
+Status:
+0xC000006D
+
+Sub Status:
+0xC000006A
+
+
+============================================================
+4. ATTACK TIMELINE
+============================================================
+
+18:55:29
+Failed authentication attempt #1
+
+18:55:31
+Failed authentication attempt #2
+
+18:55:33
+Failed authentication attempt #3
+
+18:55:35
+Failed authentication attempt #4
+
+18:55:37
+Failed authentication attempt #5
+
+Total observed attack duration:
+8 seconds
+
+
+============================================================
+5. INVESTIGATION
+============================================================
+
+The investigation identified the following characteristics:
+
+1. Five Event ID 4625 failures were observed.
+
+2. All attempts originated from the same source IP:
+   192.168.87.128.
+
+3. All attempts targeted the same account:
+   soc-test.
+
+4. The authentication type was Logon Type 3,
+   indicating network authentication.
+
+5. The failure status was 0xC000006D.
+
+6. The failure sub-status was 0xC000006A, indicating
+   an incorrect password.
+
+7. The five attempts occurred within an 8-second period.
+
+8. Event ID 4624 was checked to determine whether the
+   authentication attempts eventually resulted in a
+   successful login.
+
+9. No successful Event ID 4624 authentication was identified
+   during the investigated timeframe.
+
+
+============================================================
+6. ATTACK PATTERN
+============================================================
+
+The observed behavior is consistent with a brute-force
+authentication pattern because multiple authentication
+attempts were made against the same account from the same
+source within a short period.
+
+The activity was intentionally generated as part of a
+controlled cybersecurity laboratory.
+
+The source IP address 192.168.87.128 belongs to the Kali
+Linux attacker VM used in the laboratory.
+
+
+============================================================
+7. MITRE ATT&CK MAPPING
+============================================================
+
+TACTIC:
+Credential Access
+
+TECHNIQUE:
+T1110 - Brute Force
+
+OBSERVED BEHAVIOR:
+
+Multiple failed authentication attempts were generated
+against the "soc-test" account.
+
+The attempts originated from the same source and occurred
+within a short period.
+
+
+============================================================
+8. INDICATORS OF INTEREST
+============================================================
+
+Source IP:
+192.168.87.128
+
+Target IP:
+192.168.87.129
+
+Target Account:
+soc-test
+
+Event ID:
+4625
+
+Logon Type:
+3
+
+Status:
+0xC000006D
+
+Sub Status:
+0xC000006A
+
+
+============================================================
+9. SUCCESSFUL AUTHENTICATION CHECK
+============================================================
+
+Event ID 4624 was investigated around the timeframe of the
+failed authentication attempts.
+
+No corresponding successful authentication was identified.
+
+Therefore:
+
+Failed attempts:
+5
+
+Successful authentication identified:
+0
+
+Authentication result:
+UNSUCCESSFUL
+
+
+============================================================
+10. IMPACT ASSESSMENT
+============================================================
+
+No evidence of successful account compromise was identified.
+
+No successful authentication was observed following the
+five failed attempts.
+
+The activity therefore represents an attempted authentication
+attack rather than a confirmed successful compromise.
+
+
+============================================================
+11. SEVERITY
+============================================================
+
+SEVERITY:
+MEDIUM
+
+JUSTIFICATION:
+
+Multiple rapid authentication failures were observed from
+the same source against the same account.
+
+However, no successful authentication or evidence of account
+compromise was identified.
+
+This severity assessment applies to this controlled
+laboratory scenario. Production environments may use
+different severity criteria based on asset criticality,
+account privileges, threat intelligence, and surrounding
+activity.
+
+
+============================================================
+12. DETECTION LOGIC
+============================================================
+
+Potential brute-force detection condition:
+
+IF
+
+5 or more Event ID 4625 failures
+
+AND
+
+the failures originate from the same source IP
+
+AND
+
+occur within a short time window
+
+THEN
+
+generate a potential brute-force authentication alert.
+
+
+LAB OBSERVATION:
+
+5 failed attempts
+Same source IP
+Same target account
+8-second window
+
+Detection condition:
+MET
+
+
+============================================================
+13. RECOMMENDED SOC RESPONSE
+============================================================
+
+If this activity occurred in a real production environment,
+the SOC analyst could:
+
+1. Validate whether the source IP is expected.
+
+2. Determine whether the targeted account belongs to a
+   legitimate user or service.
+
+3. Check for successful Event ID 4624 activity.
+
+4. Review additional authentication activity around the
+   same timeframe.
+
+5. Check whether other accounts were targeted.
+
+6. Investigate account lockout or suspicious account activity.
+
+7. If malicious activity is confirmed, apply appropriate
+   containment according to organizational procedures.
+
+8. Reset credentials if compromise is suspected.
+
+9. Escalate the incident if successful authentication or
+   additional suspicious activity is identified.
+
+
+============================================================
+14. FINAL CONCLUSION
+============================================================
+
+The investigation identified five failed network
+authentication attempts against the "soc-test" account.
+
+All attempts originated from 192.168.87.128 and targeted
+192.168.87.129.
+
+The attempts generated Event ID 4625 with Logon Type 3 and
+occurred within an 8-second period.
+
+The authentication failures contained Status 0xC000006D
+and Sub Status 0xC000006A, indicating invalid credentials
+and an incorrect password.
+
+A search for Event ID 4624 found no successful authentication
+during the investigated timeframe.
+
+The activity is classified as a controlled and unsuccessful
+brute-force authentication simulation.
+
+No evidence of successful account compromise was identified.
+
+
+==========================================================

@@ -1,0 +1,142 @@
+WINDOWS BRUTE FORCE DETECTION
+ATTACK TIMELINE
+=============================
+
+CASE ID:
+BRUTE-001
+
+INCIDENT TYPE:
+Brute Force Authentication Attempt
+
+ATTACKER:
+Kali Linux VM
+
+SOURCE IP:
+192.168.87.128
+
+TARGET:
+Windows Server 2025
+
+TARGET IP:
+192.168.87.129
+
+TARGET ACCOUNT:
+soc-test
+
+AUTHENTICATION METHOD:
+SMB / Network Authentication
+
+WINDOWS EVENT:
+Event ID 4625 - An account failed to log on
+
+LOGON TYPE:
+3 - Network
+
+ATTACK DATE:
+10/07/2026
+
+ATTACK TIMELINE:
+-----------------------------
+
+18:55:29
+Failed authentication attempt #1
+Source IP: 192.168.87.128
+Target Account: soc-test
+Event ID: 4625
+Result: Authentication failed
+
+18:55:31
+Failed authentication attempt #2
+Source IP: 192.168.87.128
+Target Account: soc-test
+Event ID: 4625
+Result: Authentication failed
+
+18:55:33
+Failed authentication attempt #3
+Source IP: 192.168.87.128
+Target Account: soc-test
+Event ID: 4625
+Result: Authentication failed
+
+18:55:35
+Failed authentication attempt #4
+Source IP: 192.168.87.128
+Target Account: soc-test
+Event ID: 4625
+Result: Authentication failed
+
+18:55:37
+Failed authentication attempt #5
+Source IP: 192.168.87.128
+Target Account: soc-test
+Event ID: 4625
+Result: Authentication failed
+
+
+FAILURE DETAILS:
+-----------------------------
+
+Failure Reason:
+Unknown user name or bad password
+
+Status:
+0xC000006D
+
+Sub Status:
+0xC000006A
+
+Interpretation:
+The authentication attempt failed because of invalid
+credentials. The sub-status 0xC000006A indicates that the
+password was incorrect.
+
+
+ATTACK DURATION:
+-----------------------------
+
+First observed attempt:
+18:55:29
+
+Last observed attempt:
+18:55:37
+
+Total observed duration:
+8 seconds
+
+
+SOC OBSERVATION:
+-----------------------------
+
+Five failed network authentication attempts were observed
+against the "soc-test" account.
+
+All five attempts originated from the same source IP:
+192.168.87.128.
+
+All attempts targeted the same account and generated
+Windows Security Event ID 4625 with Logon Type 3.
+
+The attempts occurred within an 8-second period.
+
+The repeated failed authentication attempts from the same
+source against the same account within a short time window
+are consistent with a brute-force authentication pattern.
+
+This activity was intentionally generated in a controlled
+VMware lab using Kali Linux against the user's own Windows
+Server 2025 virtual machine.
+
+
+INITIAL CONCLUSION:
+-----------------------------
+
+The activity is classified as a controlled brute-force
+authentication simulation.
+
+No successful authentication was observed as part of these
+five attempts.
+
+The primary evidence is Windows Security Event ID 4625,
+with source IP 192.168.87.128, target account "soc-test",
+and Logon Type 3.

@@ -1,0 +1,88 @@
+WINDOWS BRUTE FORCE DETECTION
+INCIDENT ASSESSMENT
+=============================
+
+CASE ID:
+BRUTE-001
+
+
+INCIDENT TYPE:
+Brute Force Authentication Attempt
+
+
+MITRE ATT&CK:
+T1110 - Brute Force
+
+
+TACTIC:
+Credential Access
+
+
+SOURCE:
+192.168.87.128
+
+
+TARGET:
+192.168.87.129
+
+
+TARGET ACCOUNT:
+soc-test
+
+
+EVENT ID:
+4625 - Failed Logon
+
+
+LOGON TYPE:
+3 - Network
+
+
+ATTACK ACTIVITY:
+Five failed authentication attempts were observed within
+an 8-second period.
+
+
+FAILURE:
+Status: 0xC000006D
+Sub Status: 0xC000006A
+
+The authentication attempts failed because of invalid
+credentials / incorrect password.
+
+
+SUCCESSFUL AUTHENTICATION:
+No Event ID 4624 successful authentication was identified
+during the investigated timeframe.
+
+
+INCIDENT SEVERITY:
+Medium
+
+
+SEVERITY JUSTIFICATION:
+The activity demonstrates repeated authentication failures
+consistent with a brute-force pattern. However, no
+successful authentication or evidence of compromise was
+identified.
+
+
+INCIDENT STATUS:
+Attempted Attack / Unsuccessful Authentication
+
+
+ENVIRONMENT:
+Controlled VMware cybersecurity laboratory.
+
+
+FINAL ASSESSMENT:
+The investigation identified a controlled brute-force
+authentication simulation originating from the Kali Linux
+VM and targeting the Windows Server 2025 VM.
+
+The activity generated five Event ID 4625 failures against
+the "soc-test" account within eight seconds.
+
+No successful Event ID 4624 authentication was observed.
+
+The simulated attack was therefore unsuccessful.

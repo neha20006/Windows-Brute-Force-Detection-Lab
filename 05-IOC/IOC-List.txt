@@ -1,0 +1,89 @@
+WINDOWS BRUTE FORCE DETECTION
+IOC LIST
+=============================
+
+CASE ID:
+BRUTE-001
+
+
+SOURCE IP:
+192.168.87.128
+
+Description:
+IP address of the Kali Linux VM that generated the
+controlled authentication attempts.
+
+
+TARGET IP:
+192.168.87.129
+
+Description:
+Windows Server 2025 VM targeted during the laboratory
+simulation.
+
+
+TARGET ACCOUNT:
+soc-test
+
+Description:
+Local Windows account targeted by the authentication
+attempts.
+
+
+EVENT ID:
+4625
+
+Description:
+Windows Security event indicating a failed logon.
+
+
+LOGON TYPE:
+3
+
+Description:
+Network authentication.
+
+
+STATUS:
+0xC000006D
+
+Description:
+Authentication failed because of invalid credentials.
+
+
+SUB STATUS:
+0xC000006A
+
+Description:
+Indicates an incorrect password.
+
+
+ATTACK PATTERN:
+5 failed authentication attempts within 8 seconds.
+
+Description:
+Repeated authentication failures from the same source
+against the same account.
+
+
+SUCCESSFUL LOGIN:
+None observed.
+
+Event ID 4624:
+No corresponding successful authentication was identified
+during the investigated timeframe.
+
+
+IOC CLASSIFICATION:
+-----------------------------
+
+Source IP:
+192.168.87.128
+
+Target Account:
+soc-test
+
+These indicators are associated with the controlled
+laboratory simulation and should not be considered
+malicious indicators outside this lab without additional
+investigation.

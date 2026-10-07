@@ -1,0 +1,104 @@
+WINDOWS BRUTE FORCE DETECTION
+DETECTION LOGIC
+=============================
+
+CASE ID:
+BRUTE-001
+
+OBJECTIVE:
+Detect repeated failed authentication attempts that may
+indicate a brute-force authentication attack.
+
+PRIMARY WINDOWS EVENT:
+Event ID 4625
+
+EVENT DESCRIPTION:
+An account failed to log on.
+
+RELEVANT FIELDS:
+- Source Network Address
+- Target Account Name
+- Logon Type
+- Status
+- Sub Status
+- Date and Time
+
+DETECTION PATTERN:
+-----------------------------
+
+Trigger a potential brute-force alert when:
+
+1. Multiple Event ID 4625 events are observed.
+2. The events originate from the same source IP.
+3. The events target the same account or accounts.
+4. The events occur within a short time window.
+5. The authentication type is consistent with network
+   authentication when investigating SMB activity.
+
+LAB THRESHOLD:
+-----------------------------
+
+5 or more failed authentication attempts
+from the same source IP
+within 1 minute.
+
+LAB OBSERVATION:
+-----------------------------
+
+Observed Event ID 4625 failures:
+5
+
+Source IP:
+192.168.87.128
+
+Target Account:
+soc-test
+
+Time Window:
+8 seconds
+
+Logon Type:
+3 - Network
+
+Result:
+Detection condition met.
+
+DETECTION CONCLUSION:
+-----------------------------
+
+The observed activity meets the laboratory detection
+criteria for a potential brute-force authentication attack.
+
+Five Event ID 4625 failures originated from the same source
+IP, 192.168.87.128, against the same account, soc-test,
+within an 8-second period.
+
+This detection threshold is intended for this controlled
+laboratory and should be tuned according to the environment
+when implemented in a production SOC.
+
+SUCCESSFUL AUTHENTICATION CHECK
+===============================
+
+A search for Windows Security Event ID 4624 was performed
+around the time of the observed brute-force activity.
+
+Result:
+No successful Event ID 4624 authentication was identified
+following the five observed Event ID 4625 failures.
+
+Therefore, there is no evidence from the investigated
+events that the authentication attempts resulted in a
+successful login.
+
+FINAL AUTHENTICATION RESULT:
+-----------------------------
+
+Failed attempts: 5
+Successful attempts identified: 0
+
+Authentication outcome:
+UNSUCCESSFUL
+
+The simulated brute-force activity did not result in
+successful authentication.

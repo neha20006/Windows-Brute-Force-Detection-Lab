@@ -1,0 +1,30 @@
+WINDOWS BRUTE FORCE DETECTION
+
+CASE ID: BRUTE-001
+
+CASE TITLE:
+Windows Failed Login / Possible Brute Force Investigation
+
+ALERT TYPE:
+Multiple Failed Login Attempts
+
+DATA SOURCE:
+Windows Security Event Log
+
+PRIMARY EVENT ID:
+4625 - An account failed to log on
+
+INITIAL OBJECTIVE:
+Identify and analyze repeated failed login attempts and determine whether the activity is consistent with a brute force attack.
+
+HOST:
+[Your Windows Computer]
+
+OPERATING SYSTEM:
+Windows 11
+
+ANALYST:
+[Your Name]
+
+INVESTIGATION STATUS:
+Investigation Started
