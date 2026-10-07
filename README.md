@@ -8,9 +8,9 @@ SOC / Cybersecurity Investigation Project
 CASE ID:
 BRUTE-001
 
-============================================================
+==============
 1. PROJECT OVERVIEW
-============================================================
+===============
 
 This project demonstrates how a SOC Analyst can detect and
 investigate repeated failed authentication attempts on a
@@ -27,9 +27,9 @@ The main Windows security event investigated was:
 Event ID 4625 - An account failed to log on.
 
 
-============================================================
+===================
 2. PROJECT OBJECTIVE
-============================================================
+====================
 
 The main objectives of this project were:
 
@@ -63,9 +63,9 @@ The main objectives of this project were:
 14. Create a professional SOC incident report.
 
 
-============================================================
+=====================
 3. LAB ENVIRONMENT
-============================================================
+======================
 
 Virtualization Platform:
 VMware
@@ -89,9 +89,9 @@ Authentication Method:
 SMB / Network Authentication
 
 
-============================================================
+========================
 4. ATTACK SIMULATION
-============================================================
+=========================
 
 A controlled authentication test was performed from the Kali
 Linux virtual machine against my own Windows Server 2025
@@ -107,9 +107,9 @@ This was performed only inside my own isolated VMware
 laboratory environment.
 
 
-============================================================
+============================
 5. WINDOWS EVENT DETECTED
-============================================================
+=============================
 
 Primary Event:
 
@@ -143,9 +143,9 @@ The Sub Status 0xC000006A indicates that the password was
 incorrect.
 
 
-============================================================
+=============================
 6. ATTACK TIMELINE
-============================================================
+==============================
 
 Attack Date:
 10/07/2026
@@ -183,9 +183,9 @@ Logon Type:
 3 - Network
 
 
-============================================================
+============================
 7. INVESTIGATION FINDINGS
-============================================================
+============================
 
 During the investigation, the following was identified:
 
@@ -216,9 +216,9 @@ During the investigation, the following was identified:
     during the investigated timeframe.
 
 
-============================================================
+============================
 8. SUCCESSFUL LOGIN CHECK
-============================================================
+=============================
 
 After finding the five failed authentication events, I
 checked Windows Security Event ID 4624.
@@ -239,9 +239,9 @@ No evidence was found that the simulated brute-force attempt
 successfully authenticated to the Windows Server.
 
 
-============================================================
+=================================
 9. BRUTE-FORCE DETECTION LOGIC
-============================================================
+===================================
 
 A potential brute-force alert can be generated when:
 
@@ -275,9 +275,9 @@ Detection Condition:
 MET
 
 
-============================================================
+======================================
 10. IOC / INVESTIGATION INDICATORS
-============================================================
+======================================
 
 Source IP:
 192.168.87.128
@@ -310,9 +310,9 @@ It should NOT be considered a malicious IP outside this
 laboratory.
 
 
-============================================================
+==============================
 11. MITRE ATT&CK MAPPING
-============================================================
+=============================
 
 TACTIC:
 Credential Access
@@ -328,9 +328,9 @@ against the same account using incorrect passwords.
 The behavior is consistent with the Brute Force technique.
 
 
-============================================================
+=======================
 12. INCIDENT SEVERITY
-============================================================
+========================
 
 SEVERITY:
 Medium
@@ -352,9 +352,9 @@ Therefore, the incident is classified as:
 Attempted Brute Force / Unsuccessful Authentication
 
 
-============================================================
+===================
 13. SOC RESPONSE
-============================================================
+===================
 
 In a real production environment, a SOC Analyst could:
 
@@ -380,9 +380,9 @@ In a real production environment, a SOC Analyst could:
     additional suspicious activity is discovered.
 
 
-============================================================
+=========================
 14. FINAL CONCLUSION
-============================================================
+==========================
 
 This project successfully demonstrated a complete SOC
 investigation workflow for a Windows brute-force
@@ -419,9 +419,9 @@ No evidence of successful account compromise was identified
 during this investigation.
 
 
-============================================================
+==========================
 15. SKILLS DEMONSTRATED
-============================================================
+===========================
 
 Windows Event Viewer
 Windows Security Logs
@@ -441,9 +441,9 @@ Kali Linux
 Windows Server 2025
 
 
-============================================================
+=========================
 16. PROJECT STRUCTURE
-============================================================
+==========================
 
 01-Case-Intake
     Case-Intake.txt
@@ -476,9 +476,9 @@ Windows Server 2025
     Investigation screenshots
 
 
-============================================================
+===================
 17. DISCLAIMER
-============================================================
+====================
 
 This project was performed entirely in a controlled VMware
 laboratory environment using my own virtual machines.
